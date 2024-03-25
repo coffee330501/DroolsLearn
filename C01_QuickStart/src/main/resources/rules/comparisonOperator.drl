@@ -1,0 +1,50 @@
+package rules
+
+import io.github.coffee330501.droolsLearn.entity.ComparisonOperatorEntity
+
+rule "rule_contains"
+when
+    // 下面的两条规则要都通过才行
+    // 字符串也可以用contains
+    ComparisonOperatorEntity(name contains "张三")
+    ComparisonOperatorEntity(list contains name)
+then
+    System.out.println("rule_contains 触发");
+end
+
+rule "rule_not_contains"
+when
+    // 字符串也可以用contains
+    ComparisonOperatorEntity(name not contains "张三")
+    ComparisonOperatorEntity(list not contains name)
+then
+    System.out.println("rule_not_contains 触发");
+end
+
+rule "rule_memberOf"
+when
+    ComparisonOperatorEntity(name memberOf list)
+then
+    System.out.println("rule_memberOf 触发");
+end
+
+rule "rule_not_memberOf"
+when
+    ComparisonOperatorEntity(name not memberOf list)
+then
+    System.out.println("rule_not_memberOf 触发");
+end
+
+rule "rule_matches"
+when
+    ComparisonOperatorEntity(name matches "张.*")
+then
+    System.out.println("rule_matches 触发");
+end
+
+rule "rule_not_matches"
+when
+    ComparisonOperatorEntity(name not matches "张.*")
+then
+    System.out.println("rule_not_matches 触发");
+end

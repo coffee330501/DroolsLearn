@@ -1,0 +1,21 @@
+package rules
+
+import io.github.coffee330501.droolsLearn.entity.Student
+
+rule "rule_insert"
+when
+     $s:Student(name contains "张三")
+then
+    Student student = new Student();
+    student.setName("李四");
+    // 数据更新后所有规则都会重新匹配一遍
+    insert(student);
+    System.out.println("规则：名称为张三触发，更新名称为 李四");
+end
+
+rule "rule_student_name"
+    when
+        Student(name contains "李四")
+    then
+        System.out.println("规则 名称为李四触发");
+end

@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>C01_QuickStart</module>
+        <module>C02_Attributes</module>
     </modules>
 
     <properties>

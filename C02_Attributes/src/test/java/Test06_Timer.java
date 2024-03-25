@@ -1,4 +1,4 @@
-import io.github.coffee330501.droolsLearn.entity.Student;
+import org.drools.core.base.RuleNameStartsWithAgendaFilter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +6,11 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
-public class Test05_Insert {
+/**
+ * 定时器
+ * 注意启动方式与结束方式变了
+ */
+public class Test06_Timer {
     KieSession simpleRuleKSession;
 
     @Before
@@ -20,21 +24,18 @@ public class Test05_Insert {
     }
 
     @Test
-    public void testRule() {
-        //新建事实对象
-        Student student = new Student();
-        student.setName("张三");
-
-        //第四步 插入事实对象到session中
-        simpleRuleKSession.insert(student);
-
-        //第五步 执行规则引擎
-        simpleRuleKSession.fireAllRules();
+    public void test() throws InterruptedException {
+        new Thread(() -> {
+            //启动规则引擎进行规则匹配，直到调用halt方法才结束规则引擎
+            simpleRuleKSession.fireUntilHalt(new RuleNameStartsWithAgendaFilter("rule_timer"));
+        }).start();
+        Thread.sleep(10000);
     }
 
     @After
     public void after() {
         //第六步 关闭规则引擎
+        simpleRuleKSession.halt();
         simpleRuleKSession.dispose();
         System.out.println("规则执行完成，关闭规则");
     }

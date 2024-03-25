@@ -1,0 +1,32 @@
+package rules
+
+import io.github.coffee330501.entity.ComparisonOperatorEntity
+
+/**
+ * 正常是从上往下执行
+ * 添加优先级 salience 可改变执行顺序
+ * salience 越大越先执行
+ */
+rule "rule_salience_1"
+    salience 8
+    when
+        eval(true)
+    then
+        System.out.println("规则1触发");
+end
+
+rule "rule_salience_2"
+    salience 9
+    when
+        eval(true)
+    then
+        System.out.println("规则2触发");
+end
+
+rule "rule_salience_3"
+    salience 10
+    when
+        eval(true)
+    then
+        System.out.println("规则3触发");
+end

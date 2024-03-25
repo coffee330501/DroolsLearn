@@ -1,0 +1,12 @@
+package rules
+
+import io.github.coffee330501.entity.ComparisonOperatorEntity
+
+
+rule "rule_date_expires"
+    // 当前时间大于等于设置的时间时，规则失效
+    date-expires "2024-03-25 15:57:00"
+    when
+    then
+        System.out.println("规则rule_date_expires触发");
+end

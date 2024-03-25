@@ -19,9 +19,6 @@ public class Test04_Update {
         simpleRuleKSession = kieClasspathContainer.newKieSession();
     }
 
-    /**
-     * 控制只执行某个规则
-     */
     @Test
     public void testRule() {
         //新建事实对象

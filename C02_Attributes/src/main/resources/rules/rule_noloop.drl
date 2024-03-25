@@ -1,0 +1,14 @@
+package rules
+
+import io.github.coffee330501.entity.ComparisonOperatorEntity
+
+rule "rule_noloop"
+    // 这里不添加no-loop会发生死循环
+    // 不允许规则再次执行，无论是不是死循环都不允许
+    no-loop
+    when
+        $s:ComparisonOperatorEntity(name contains "张三")
+    then
+        update($s)
+        System.out.println("规则：noloop触发");
+end

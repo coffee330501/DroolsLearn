@@ -1,0 +1,18 @@
+package rules
+
+rule "rule_activation_group_1"
+    // 相同的组名只能有一个触发，按优先级来，默认从上往下执行
+    activation-group "g1"
+    when
+        // 默认true
+    then
+        System.out.println("规则1触发");
+end
+
+rule "rule_activation_group_2"
+    activation-group "g1"
+    when
+        // 默认true
+    then
+        System.out.println("规则2触发");
+end

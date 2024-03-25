@@ -1,0 +1,12 @@
+package rules
+
+import io.github.coffee330501.entity.ComparisonOperatorEntity
+
+
+rule "rule_date_effective"
+    // 当前时间大于等于设置的时间，规则才会生效
+    date-effective "2024-03-25 15:53:00"
+    when
+    then
+        System.out.println("规则rule_date_effective触发");
+end

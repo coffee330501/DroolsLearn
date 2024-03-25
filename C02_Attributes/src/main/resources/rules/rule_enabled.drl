@@ -1,0 +1,13 @@
+package rules
+
+import io.github.coffee330501.entity.ComparisonOperatorEntity
+
+rule "rule_enabled"
+    // 指定当前规则不可用
+    enabled false
+    when
+        ComparisonOperatorEntity(name not memberOf list)
+    then
+        System.out.println("规则触发：名称不在list内");
+end
+

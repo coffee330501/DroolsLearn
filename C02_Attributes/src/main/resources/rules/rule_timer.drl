@@ -1,0 +1,21 @@
+package rules
+
+import io.github.coffee330501.entity.ComparisonOperatorEntity
+import java.text.SimpleDateFormat
+import java.util.Date
+
+rule "rule_timer_1"
+    // 5秒后触发，每隔2s触发一次
+    timer(5s 2s)
+    when
+    then
+         System.out.println("规则rule_timer_1触发，触发时间为：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+end
+
+rule "rule_timer_2"
+    // 每隔1秒触发一次
+    timer (cron:0/1 * * * * ?)
+    when
+    then
+        System.out.println("规则rule_timer_2触发，触发时间为：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+end

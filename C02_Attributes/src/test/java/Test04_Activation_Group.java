@@ -1,4 +1,4 @@
-import io.github.coffee330501.droolsLearn.entity.Student;
+import org.drools.core.base.RuleNameStartsWithAgendaFilter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
-public class Test05_Insert {
+public class Test04_Activation_Group {
     KieSession simpleRuleKSession;
 
     @Before
@@ -20,16 +20,9 @@ public class Test05_Insert {
     }
 
     @Test
-    public void testRule() {
-        //新建事实对象
-        Student student = new Student();
-        student.setName("张三");
-
-        //第四步 插入事实对象到session中
-        simpleRuleKSession.insert(student);
-
+    public void test() {
         //第五步 执行规则引擎
-        simpleRuleKSession.fireAllRules();
+        simpleRuleKSession.fireAllRules(new RuleNameStartsWithAgendaFilter("rule_activation_group"));
     }
 
     @After

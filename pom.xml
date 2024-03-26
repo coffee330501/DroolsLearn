@@ -11,6 +11,7 @@
     <modules>
         <module>C01_QuickStart</module>
         <module>C02_Attributes</module>
+        <module>C03_AdvanceGrammar</module>
     </modules>
 
     <properties>

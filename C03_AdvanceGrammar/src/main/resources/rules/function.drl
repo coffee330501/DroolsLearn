@@ -1,0 +1,16 @@
+package rules
+
+import io.github.coffee330501.entity.Student
+
+// 定义一个函数
+function String sayHello(String name){
+    return "Hello " + name;
+}
+
+rule "rule_function"
+    when
+        $s:Student(name != null)
+    then
+        String res = sayHello($s.getName());
+        System.out.println(res);
+end

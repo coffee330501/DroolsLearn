@@ -1,0 +1,12 @@
+package rules
+
+import io.github.coffee330501.entity.Student
+
+// 不带参数的查询
+query "query_1"
+    $s:Student(age > 10)
+end
+
+query "query_2"(String sname)
+    $s:Student(age < 10 && name == sname)
+end

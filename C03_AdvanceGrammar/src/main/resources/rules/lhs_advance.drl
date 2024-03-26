@@ -1,0 +1,76 @@
+package rules
+
+import io.github.coffee330501.entity.Student
+
+// in, not in 类似于SQL中的in, not in
+rule "lhs_advance_1"
+    when
+        Student(age in (10,11,12))
+    then
+        System.out.println("lhs_advance_1 规则触发");
+end
+
+// eval(表达式) 输出Boolean
+rule "lhs_advance_2"
+    when
+        eval(1 == 1)
+        eval(true)
+    then
+        System.out.println("lhs_advance_2 规则触发");
+end
+
+// not + 约束 ，如果约束不存在则返回true，多个Fact对象都符合条件也只会触发一次
+rule "lhs_advance_3"
+    when
+        not Student(age < 10)
+    then
+        System.out.println("lhs_advance_3 规则触发");
+end
+
+/**
+ * exists 与not作用相反，如果存在则返回true
+ * 如果不写 exists 同时有多个满足条件的Fact对象，会多次触发RHS，加了exists后只触发一次
+ */
+rule "lhs_advance_4_1"
+    when
+        exists Student(age < 10)
+    then
+        System.out.println("lhs_advance_4_1 exists 规则触发");
+end
+
+rule "lhs_advance_4_2"
+    when
+        exists Student(age < 10)
+    then
+        System.out.println("lhs_advance_4_2 exists 规则触发");
+end
+
+rule "lhs_advance_4_3"
+    when
+        $s:Student(age < 10)
+    then
+        System.out.println("lhs_advance_4_3 不加exists规则触发 姓名: " + $s.getName());
+end
+
+rule "lhs_advance_4_4"
+    when
+        $s:Student(age < 10)
+    then
+        System.out.println("lhs_advance_4_4 不加exists规则触发 姓名: " + $s.getName());
+end
+
+
+// 继承
+rule "lhs_advance_5_1"
+    when
+        $s:Student(age > 10)
+    then
+        System.out.println("规则 lhs_advance_5_1 触发,名称: " + $s.getName() + "，年龄: " + $s.getAge() + " 大于10岁");
+end
+
+rule "lhs_advance_5_2" extends "lhs_advance_5_1"
+    when
+        Student(age < 20)
+    then
+        System.out.println("规则 lhs_advance_5_2 触发,名称: " + $s.getName() + "，年龄: " + $s.getAge() + " 小于20岁");
+end

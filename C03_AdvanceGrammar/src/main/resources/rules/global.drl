@@ -1,0 +1,29 @@
+package rules
+
+// 定义一个包装类型的全局变量
+global java.lang.Integer count
+// 定义一个JavaBean类型的全局变量
+global io.github.coffee330501.service.UserService userService
+// 定义一个集合类型的全局变量
+global java.util.List gList
+
+rule "rule_global_1"
+    when
+    then
+        // 包装类型 的修改只在当前规则中生效，不回影响其他规则
+        count += 10;
+        // 调用全局变量的方法
+        userService.save();
+        // 向集合类型中添加元素，所有规则都会受影响
+        gList.add("rule_global_1");
+        System.out.println("count = " + count);
+        System.out.println("gList.size() = " + gList.size());
+end
+
+rule "rule_global_2"
+    when
+    then
+        userService.save();
+        System.out.println("count = " + count);
+        System.out.println("gList.size() = " + gList.size());
+end

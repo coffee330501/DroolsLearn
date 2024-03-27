@@ -12,6 +12,7 @@
         <module>C01_QuickStart</module>
         <module>C02_Attributes</module>
         <module>C03_AdvanceGrammar</module>
+        <module>C04_SpringBoot_Drools</module>
     </modules>
 
     <properties>

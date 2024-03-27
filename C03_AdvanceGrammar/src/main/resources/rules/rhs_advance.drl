@@ -1,0 +1,32 @@
+package rules
+
+import io.github.coffee330501.entity.Student
+
+rule "rhs_advance_halt_1"
+    when
+    then
+        System.out.println("规则：rhs_advance_halt_1触发");
+        // 立即终止后面所有规则执行
+        drools.halt();
+end
+
+// 当前规则并不会触发，因为上面的规则调用了halt方法导致后面所有规则都不会执行
+rule "rhs_advance_halt_2"
+    when
+    then
+        System.out.println("规则：rhs_advance_halt_2触发");
+end
+
+// 获取工作内存对象
+rule "rhs_advance_getWorkingMemory"
+    when
+    then
+        System.out.println(drools.getWorkingMemory());
+end
+
+// 获取规则对象
+rule "rhs_advance_getRule"
+    when
+    then
+        System.out.println(drools.getRule());
+end

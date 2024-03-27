@@ -59,7 +59,6 @@ rule "lhs_advance_4_4"
         System.out.println("lhs_advance_4_4 不加exists规则触发 姓名: " + $s.getName());
 end
 
-
 // 继承
 rule "lhs_advance_5_1"
     when

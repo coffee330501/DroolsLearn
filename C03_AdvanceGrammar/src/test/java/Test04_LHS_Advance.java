@@ -71,6 +71,13 @@ public class Test04_LHS_Advance {
         simpleRuleKSession.fireAllRules(new RuleNameStartsWithAgendaFilter("lhs_advance_4"));
     }
 
+    /**
+     * 这里很奇怪
+     * 使用了 extends 后 r2 继承 r1
+     * 若Fact对象中有一个符合r2，其余的Fact对象只需要符合r1就会触发r2
+     * 一个Fact对象是正常的
+     * 不使用extends，多个Fact对象也是正常的
+     */
     @Test
     public void test5() {
         Student student1 = new Student();
@@ -87,6 +94,11 @@ public class Test04_LHS_Advance {
         student3.setAge(21);
         student3.setName("王五");
         simpleRuleKSession.insert(student3);
+
+        Student student4 = new Student();
+        student4.setAge(21);
+        student4.setName("赵六");
+        simpleRuleKSession.insert(student4);
 
         simpleRuleKSession.fireAllRules(new RuleNameStartsWithAgendaFilter("lhs_advance_5"));
     }
